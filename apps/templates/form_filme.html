@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if form.instance.id %}Editar Filme{% else %}Adicionar Filme{% endif %}</title>
+</head>
+<body>
+    <h1>{% if form.instance.id %}Editar Filme{% else %}Adicionar Filme{% endif %}</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+    <a href="{% url 'lista_filmes' %}">Voltar para a Lista</a>
+</body>
+</html>

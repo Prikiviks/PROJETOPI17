@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ filme.titulo }} - Detalhes{% endblock %}
+
+{% block content %}
+<div class="filme-detalhes">
+    <img src="{{ filme.poster.url }}" alt="{{ filme.titulo }}">
+    <div class="filme-detalhes-content">
+        <h1 class="filme-titulo">{{ filme.titulo }}</h1>
+        <p class="filme-sinopse">{{ filme.sinopse }}</p>
+        <p class="filme-info"><span>Gênero:</span> {{ filme.genero }}</p>
+        <p class="filme-info"><span>Diretor:</span> {{ filme.diretor }}</p>
+        <p class="filme-info"><span>Duração:</span> {{ filme.duracao }} minutos</p>
+        <p class="filme-info"><span>Data de Lançamento:</span> {{ filme.data_lancamento }}</p>
+        <p class="filme-info"><span>Classificação:</span> {{ filme.classificacao }}</p>
+        <p class="filme-info"><a href="{{ filme.url_trailer }}" class="trailer-link">Trailer</a></p>
+        <div class="filme-links">
+            <a href="{% url 'editar_filme' filme.id %}">Editar</a>
+            <form method="post" action="{% url 'excluir_filme' filme.id %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Excluir</button>
+            </form>
+            <a href="{% url 'lista_filmes' %}">Voltar para a Lista</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

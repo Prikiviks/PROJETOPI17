@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Perfil</title>
+</head>
+<body>
+    <h1>Bem-vindo, {{ user.username }}</h1>
+    <p>Biografia: {{ user.perfilusuario.biografia }}</p>
+    <img src="{{ user.perfilusuario.foto_perfil.url }}" alt="Foto de perfil">
+</body>
+</html>

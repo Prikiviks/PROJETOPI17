@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Sistema de Crítica e Avaliação de Filmes{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Bem-vindo ao Sistema de Crítica e Avaliação de Filmes</h1>
+
+    <h2>Filmes Recentes</h2>
+    <div class="cards-container">
+        {% for filme in filmes_recent %}
+        <div class="card">
+            <a href="{% url 'detalhe_filme' filme.id %}">
+                <img src="{{ filme.poster.url }}" alt="{{ filme.titulo }}">
+            </a>
+            <div class="card-content">
+                <h2 class="card-title">{{ filme.titulo }}</h2>
+                <p class="card-description">{{ filme.sinopse|truncatewords:20 }}</p>
+                <p>Data de Lançamento: {{ filme.data_lancamento }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2>Críticas Populares</h2>
+    <div class="cards-container">
+        {% for critica in criticas_populares %}
+        <div class="card">
+            <a href="{% url 'detalhe_filme' critica.filme.id %}">
+                <img src="{{ critica.filme.poster.url }}" alt="{{ critica.titulo }}">
+            </a>
+            <div class="card-content">
+                <h2 class="card-title">{{ critica.titulo }}</h2> por {{ critica.usuario.username }}
+                <p class="card-description">{{ critica.texto_critica|truncatewords:20 }}</p>
+                <p>Data: {{ critica.data_criacao }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
